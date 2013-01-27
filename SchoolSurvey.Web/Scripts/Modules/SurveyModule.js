@@ -25,11 +25,11 @@ define("SurveyModule", [
              title('Success of the school');
              description('In this question you are going to build a successful school. You have 100 success dollars to spend.');
              surveyQuestions.push(questionFactory.create(sandbox, 'one', 'Academic performance', 0, 100, valueChanged));
-             //surveyQuestions.push(questionFactory.create(sandbox, 'two', 'Spiritual development', 0, 100, valueChanged));
-             //surveyQuestions.push(questionFactory.create(sandbox, 'three', 'Positive relationships between students', 0, 100, valueChanged));
-             //surveyQuestions.push(questionFactory.create(sandbox, 'four', 'Positive relationships between students and teachers', 0, 100, valueChanged));
-             //surveyQuestions.push(questionFactory.create(sandbox, 'five', 'Number of subjects offered', 0, 100, valueChanged));
-             //surveyQuestions.push(questionFactory.create(sandbox, 'six', 'Community involvement', 0, 100, valueChanged));
+             surveyQuestions.push(questionFactory.create(sandbox, 'two', 'Spiritual development', 0, 100, valueChanged));
+             surveyQuestions.push(questionFactory.create(sandbox, 'three', 'Positive relationships between students', 0, 100, valueChanged));
+             surveyQuestions.push(questionFactory.create(sandbox, 'four', 'Positive relationships between students and teachers', 0, 100, valueChanged));
+             surveyQuestions.push(questionFactory.create(sandbox, 'five', 'Number of subjects offered', 0, 100, valueChanged));
+             surveyQuestions.push(questionFactory.create(sandbox, 'six', 'Community involvement', 0, 100, valueChanged));
           };
 
       return {

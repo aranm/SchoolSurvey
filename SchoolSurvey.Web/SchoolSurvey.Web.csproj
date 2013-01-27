@@ -276,12 +276,15 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
+    <Content Include="Scripts\loadKoTemplate.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\ModuleGroupings\HomeScreen.js" />
     <Content Include="Scripts\Modules\SurveyModule.js" />
     <Content Include="Scripts\r.js" />
     <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\stringTemplateEngine.js" />
+    <Content Include="Scripts\text.js" />
     <Content Include="Scripts\Utilities\ArrayExtension.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

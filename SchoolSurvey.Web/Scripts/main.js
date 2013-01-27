@@ -8,6 +8,7 @@ require.config({
       'knockout': 'knockout-2.1.0.debug',
       'jquery': 'jquery-1.7.1',
       'jqueryui': 'jquery-ui-1.8.20',
+      'touch-punch' : 'jquery.ui.touch-punch',
       'ArrayExtension': 'Utilities/ArrayExtension',
 
       //Framework
@@ -48,8 +49,12 @@ require.config({
          exports: 'jQuery'
       },
       'jqueryui': {
-         exports: 'jQuery',
-         deps: ['jquery']
+         deps: ['jquery'],
+         exports: 'jQuery'
+      },
+      'touch-punch': {
+         deps: ['jqueryui'],
+         exports: 'jQuery'
       }
    },
    loadKoTemplate: {
@@ -64,6 +69,7 @@ define('CoreScripts', [
          'jquery',
          'knockout',
          'jqueryui',
+         'touch-punch',
          'stringTemplateEngine',
          'ArrayExtension',
          'Core.DataBinding',
