@@ -5,7 +5,7 @@ require.config({
    waitSeconds: 0,
    paths: {
       //3rd Party libraries
-      'knockout': 'knockout-2.1.0.debug',
+      'knockout': 'knockout-2.2.1.debug',
       'jquery': 'jquery-1.7.1',
       'jqueryui': 'jquery-ui-1.8.20',
       'touch-punch' : 'jquery.ui.touch-punch',
