@@ -6,8 +6,8 @@ require.config({
    paths: {
       //3rd Party libraries
       'knockout': 'knockout-2.2.1.debug',
-      'jquery': 'jquery-1.7.1',
-      'jqueryui': 'jquery-ui-1.8.20',
+      'jquery': 'jquery-1.9.0',
+      'jqueryui': 'jquery-ui-1.10.0',
       'touch-punch' : 'jquery.ui.touch-punch',
       'ArrayExtension': 'Utilities/ArrayExtension',
 
