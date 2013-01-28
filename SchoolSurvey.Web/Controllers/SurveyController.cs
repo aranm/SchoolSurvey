@@ -17,7 +17,10 @@ namespace SchoolSurvey.Web.Controllers {
          this.UnitOfWork.SaveChanges();
 
          //get all the questions
-         var questions = this.UnitOfWork.Questions.Select(item => item.CopyToIncludingResponses());
+         var questions = this.UnitOfWork
+            .Questions
+            .OrderBy(item => item.Id)
+            .Select(item => item.CopyToIncludingResponses());
 
          return base.Json(new { user = newUser.Id, questions = questions }, true);
       }

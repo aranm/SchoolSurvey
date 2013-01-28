@@ -26,6 +26,20 @@ define("SurveyModule", [
             return true;
          }
       }),
+      isFinalQuestion = ko.computed(function () {
+         if (questionArray().length == 0) {
+            return false;
+         }
+         else if (currentQuestion() === questionArray()[questionArray().length - 1]) {
+            return true;
+         }
+         else {
+            return false;
+         }
+      }),
+      showSurveyFinishedScreen = function() {
+             
+      },
       saveCurrentQuestion = function () {
          //prepare save data
          var data = {
@@ -56,11 +70,21 @@ define("SurveyModule", [
             currentQuestion(questionArray()[indexOfCurrentQuestion + 1]);
          }
       },
+      finishQuestionPartOfSurvey = function () {
+         var indexOfCurrentQuestion = questionArray().indexOf(currentQuestion());
+
+         if (indexOfCurrentQuestion === questionArray().length - 1) {
+            saveCurrentQuestion();
+            showSurveyFinishedScreen();
+         }
+      },
       viewModel = {
          templateName: templateName,
          currentQuestion: currentQuestion,
          hasNextQuestion: hasNextQuestion,
+         isFinalQuestion: isFinalQuestion,
          moveToNextQuestion: moveToNextQuestion,
+         finishQuestionPartOfSurvey: finishQuestionPartOfSurvey, 
          title: title,
          description: description,
          totalSpent: totalSpent
