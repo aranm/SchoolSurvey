@@ -375,6 +375,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Resource\Survey\SurveyTemplate.cshtml" />
+    <Content Include="Views\Resource\Survey\StartTemplate.cshtml" />
+    <Content Include="Views\Resource\Survey\FinishTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

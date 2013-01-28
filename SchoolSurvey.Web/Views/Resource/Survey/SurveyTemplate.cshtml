@@ -17,8 +17,14 @@
                <span data-bind="text: sliderStuff.currentValue"></span>
             </li>
          </ol>
-         
+
          <div data-bind="text: spendMessage"></div>
       </section>
+   </div>
+   <div data-bind="visible: hasNextQuestion, click: moveToNextQuestion">
+      Move to next question
+   </div>
+   <div data-bind="visible: isFinalQuestion, click: finishQuestionPartOfSurvey">
+      Finish
    </div>
 </div>

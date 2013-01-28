@@ -4,11 +4,21 @@ define("SurveyModule", [
       "QuestionFactory",
       "SliderBinding",
       "loadKoTemplate!Survey/surveyTemplate",
+      "loadKoTemplate!Survey/startTemplate",
+      "loadKoTemplate!Survey/finishTemplate",
       'JQueryDictionary'], function (core, questionFactory) {
    core.register("SurveyModule", function (sandbox) {
 
       var ko = sandbox.getObservable(),
-      templateName = ko.observable("surveyTemplate"),
+      templateName = ko.observable('startTemplate'),
+      surveyIsRunning = ko.computed(function () {
+         if (templateName() === 'surveytemplate') {
+            return true;
+         }
+         else {
+            return false;
+         }
+      }),
       userId = -1,
       title = ko.observable(''),
       description = ko.observable(''),
@@ -38,7 +48,7 @@ define("SurveyModule", [
          }
       }),
       showSurveyFinishedScreen = function() {
-             
+         templateName('finishTemplate');
       },
       saveCurrentQuestion = function () {
          //prepare save data
@@ -78,28 +88,6 @@ define("SurveyModule", [
             showSurveyFinishedScreen();
          }
       },
-      viewModel = {
-         templateName: templateName,
-         currentQuestion: currentQuestion,
-         hasNextQuestion: hasNextQuestion,
-         isFinalQuestion: isFinalQuestion,
-         moveToNextQuestion: moveToNextQuestion,
-         finishQuestionPartOfSurvey: finishQuestionPartOfSurvey, 
-         title: title,
-         description: description,
-         totalSpent: totalSpent
-      },
-      randomiseArray =function ( myArray ) {
-         var i = myArray.length, j, tempi, tempj;
-         if ( i == 0 ) return false;
-         while ( --i ) {
-            j = Math.floor( Math.random() * ( i + 1 ) );
-            tempi = myArray[i];
-            tempj = myArray[j];
-            myArray[i] = tempj;
-            myArray[j] = tempi;
-         }
-      },
       loadQuestions = function () {
          sandbox.request({
             name: "StartNewSurvey",
@@ -121,12 +109,39 @@ define("SurveyModule", [
             failure: function (errorMessages) {
             }
          });
+      },
+      startSurvey = function () {
+         templateName('surveyTemplate');
+         loadQuestions();
+      },
+      viewModel = {
+         templateName: templateName,
+         startSurvey: startSurvey,
+         surveyIsRunning: surveyIsRunning, 
+         currentQuestion: currentQuestion,
+         hasNextQuestion: hasNextQuestion,
+         isFinalQuestion: isFinalQuestion,
+         moveToNextQuestion: moveToNextQuestion,
+         finishQuestionPartOfSurvey: finishQuestionPartOfSurvey, 
+         title: title,
+         description: description,
+         totalSpent: totalSpent
+      },
+      randomiseArray =function ( myArray ) {
+         var i = myArray.length, j, tempi, tempj;
+         if ( i == 0 ) return false;
+         while ( --i ) {
+            j = Math.floor( Math.random() * ( i + 1 ) );
+            tempi = myArray[i];
+            tempj = myArray[j];
+            myArray[i] = tempj;
+            myArray[j] = tempi;
+         }
       };
 
       return {
          activate: function () {
             sandbox.bind(viewModel);
-            loadQuestions();
          },
          destroy: function () {
             sandbox.unbind();
