@@ -6,4 +6,7 @@
 
 <div id="mainTemplatedContent">
    <div data-bind="template: { name: templateName() }"></div>
+   <div data-bind="enable: hasNextQuestion, click: moveToNextQuestion">
+      Move to next question
+   </div>
 </div>

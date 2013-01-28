@@ -12,15 +12,37 @@ define("SurveyModule", [
       title = ko.observable(''),
       description = ko.observable(''),
       questionArray = ko.observableArray(),
-      surveyQuestions = ko.observableArray(),
       totalSpent = ko.observable(0),
       currentQuestion = ko.observable(null),
+      hasNextQuestion = ko.computed(function () {
+         if (questionArray().length == 0) {
+            return false;
+         }
+         else if (currentQuestion() === questionArray()[questionArray().length - 1]) {
+            return false;
+         }
+         else {
+            return true;
+         }
+      }),
+      saveCurrentQuestion = function () {
+         
+      },
+      moveToNextQuestion = function () {
+         var indexOfCurrentQuestion = questionArray().indexOf(currentQuestion());
+         
+         if (indexOfCurrentQuestion < questionArray().length - 1) {
+            saveCurrentQuestion();
+            currentQuestion(questionArray()[indexOfCurrentQuestion + 1]);
+         }
+      },
       viewModel = {
          templateName: templateName,
          currentQuestion: currentQuestion,
+         hasNextQuestion: hasNextQuestion,
+         moveToNextQuestion: moveToNextQuestion,
          title: title,
          description: description,
-         surveyQuestions: surveyQuestions,
          totalSpent: totalSpent
       },
       randomiseArray =function ( myArray ) {
@@ -55,17 +77,6 @@ define("SurveyModule", [
             failure: function (errorMessages) {
             }
          });
-
-         //totalSpend = 100;
-         //title('Success of the school');
-         //description('In this question you are going to build a successful school. You have 100 success dollars to spend.');
-
-         //var questions = ['Academic performance', 'Spiritual development', 'Positive relationships between students', 'Positive relationships between students and teachers', 'Number of subjects offered', 'Community involvement'];
-         //randomiseArray(questions);
-
-         //for (var i = 0; i < questions.length; i++) {
-         //   surveyQuestions.push(questionFactory.create(sandbox, cssClassNameArray[i], questions[i], 0, 100, valueChanged));
-         //}
       };
 
       return {
