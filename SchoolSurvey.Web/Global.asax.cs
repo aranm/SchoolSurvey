@@ -6,6 +6,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Mindscape.LightSpeed;
+using SchoolSurvey.Web.DataAccess;
 
 namespace SchoolSurvey.Web {
    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
@@ -21,5 +23,7 @@ namespace SchoolSurvey.Web {
          BundleConfig.RegisterBundles(BundleTable.Bundles);
          AuthConfig.RegisterAuth();
       }
+
+      internal static readonly LightSpeedContext<SurveyModelUnitOfWork> LightSpeedDataContext = new LightSpeedContext<SurveyModelUnitOfWork>("default");
    }
 }

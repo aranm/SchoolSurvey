@@ -42,7 +42,8 @@ require.config({
       'SurveyModule': 'Modules/SurveyModule',
 
       //Factories
-      'QuestionFactory': 'Factories/QuestionFactory'
+      'QuestionFactory': 'Factories/QuestionFactory',
+      'SurveyResponseFactory': 'Factories/SurveyResponseFactory'
    },
    shim: {
       'jquery': {
@@ -97,6 +98,8 @@ define('CoreScripts', [
          });
 
 require(['CoreScripts', 'jquery', 'AjaxConfiguration', 'RoutingConfiguration', 'SliderBinding'], function (coreScripts, $, ajaxConfiguration, routingConfiguration) {
+   Core = coreScripts.core;
+   
    //Configuration
    ajaxConfiguration.configure();
    routingConfiguration.configure();

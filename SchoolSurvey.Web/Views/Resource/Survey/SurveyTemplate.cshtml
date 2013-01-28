@@ -1,9 +1,24 @@
-﻿<h3 data-bind="text: title"></h3>
-<ol class="round" data-bind="foreach: surveyQuestions">
-    <li data-bind="attr: { 'class': questionNumber }">
-       <h5 data-bind="text: questionTitle"></h5>
-       <div id="sliders" data-bind="slider: sliderStuff"></div>
-       <span>$</span>
-       <span data-bind="text: sliderStuff.currentValue"></span>
-    </li>
-</ol>
+﻿<div data-bind="if: currentQuestion() !== null">
+   <div data-bind="with: currentQuestion()">
+      <section class="featured">
+         <div class="content-wrapper">
+            <hgroup class="title">
+               <h1 data-bind="text: questionTitle"></h1>
+               <h2 data-bind="text: questionDescription"></h2>
+            </hgroup>
+         </div>
+      </section>
+      <section class="content-wrapper main-content clear-fix">
+         <ol class="round" data-bind="foreach: responses">
+            <li data-bind="attr: { 'class': questionNumber }">
+               <h5 data-bind="text: questionTitle"></h5>
+               <div data-bind="slider: sliderStuff"></div>
+               <span>$</span>
+               <span data-bind="text: sliderStuff.currentValue"></span>
+            </li>
+         </ol>
+         
+         <div data-bind="text: spendMessage"></div>
+      </section>
+   </div>
+</div>

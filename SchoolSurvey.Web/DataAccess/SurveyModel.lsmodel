@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<model xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.1.0.0" name="SurveyModel" targetNamespace="SchoolSurvey.Web.DataAccess" databaseProvider="SqlServer2005" connectionString="Data Source=(local);Initial Catalog=SchoolSurvey;Integrated Security=True;Pooling=False" pluralizedInDatabase="false" mediumTrustCompatibility="false" xmlns="http://namespaces.mindscape.co.nz/lightspeed">
+  <entities>
+    <entity name="Parent" identityType="Int32" cacheExpiry="0">
+      <oneToManyAssociations>
+        <oneToManyAssociation Id="4292819b-1d8a-427c-93ea-c3fd86baafdf" collectionName="ParentResponses" backreferenceName="Parent" isNullable="false">
+          <entityMoniker name="/SurveyModel/ParentResponse" />
+        </oneToManyAssociation>
+      </oneToManyAssociations>
+    </entity>
+    <entity name="Question" identityType="Int32" cacheExpiry="0">
+      <entityProperties>
+        <entityProperty name="Title" privateSetter="false" />
+        <entityProperty name="Description" privateSetter="false" />
+        <entityProperty name="SpendUnits" privateSetter="false" />
+        <entityProperty name="MaximumSpend" dataType="Int32" privateSetter="false" />
+      </entityProperties>
+      <oneToManyAssociations>
+        <oneToManyAssociation Id="5eca8ed8-c1ca-4ff1-9f8a-e9111479656a" collectionName="Responses" backreferenceName="Question" isNullable="false">
+          <entityMoniker name="/SurveyModel/Response" />
+        </oneToManyAssociation>
+      </oneToManyAssociations>
+    </entity>
+    <entity name="Response" identityType="Int32" cacheExpiry="0">
+      <entityProperties>
+        <entityProperty name="Title" privateSetter="false" />
+      </entityProperties>
+      <oneToManyAssociations>
+        <oneToManyAssociation Id="9033a366-3754-4035-81d3-8dfb56fab660" collectionName="ParentResponses" backreferenceName="Response" isNullable="false">
+          <entityMoniker name="/SurveyModel/ParentResponse" />
+        </oneToManyAssociation>
+      </oneToManyAssociations>
+    </entity>
+    <entity name="ParentResponse" identityType="Int32" cacheExpiry="0">
+      <entityProperties>
+        <entityProperty name="Spent" dataType="Int32" privateSetter="false" />
+      </entityProperties>
+    </entity>
+  </entities>
+</model>
