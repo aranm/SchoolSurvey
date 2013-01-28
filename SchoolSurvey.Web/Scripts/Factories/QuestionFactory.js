@@ -3,7 +3,7 @@
       var ko = sandbox.getObservable(),
           currentValue = ko.observable(0),
           currentValueSubscription = currentValue.subscribe(function(newValue) {
-             valueChanged(newValue);
+             valueChanged(itemNumber, newValue);
           }),
           sliderStuff = {
              minimumValue: min,

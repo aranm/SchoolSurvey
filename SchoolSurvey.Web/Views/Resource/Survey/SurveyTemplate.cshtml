@@ -3,5 +3,7 @@
     <li data-bind="attr: { 'class': questionNumber }">
        <h5 data-bind="text: questionTitle"></h5>
        <div id="sliders" data-bind="slider: sliderStuff"></div>
+       <span>$</span>
+       <span data-bind="text: sliderStuff.currentValue"></span>
     </li>
 </ol>

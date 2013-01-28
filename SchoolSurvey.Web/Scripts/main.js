@@ -117,22 +117,3 @@ require(['CoreScripts', 'jquery', 'AjaxConfiguration', 'RoutingConfiguration', '
       $("#amount").val("$" + $("#slider").slider("value"));
    });
 });
-
-//require(['CoreScripts', 'jquery', 'jqueryui'], function (coreScripts, $) {
-
-//   $(function () {
-//      $("#slider").slider({
-//         value: 100,
-//         min: 0,
-//         max: 500,
-//         step: 50,
-//         slide: function (event, ui) {
-//            $("#amount").val("$" + ui.value);
-//         }
-//      });
-//      $("#amount").val("$" + $("#slider").slider("value"));
-//   });
-   
-
-
-//});

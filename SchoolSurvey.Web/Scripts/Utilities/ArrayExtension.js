@@ -334,6 +334,20 @@ if (!Array.prototype.removeItem) {
    };
 }
 
+if (!Array.prototype.integerSum) {
+   Array.prototype.integerSum = function () {
+      var total = 0,
+      index,
+      arrayLength = this.length;
+      
+      for (index = 0; index < arrayLength; index++) {
+         total = total + this[index];
+      }
+
+      return total;
+   };
+}
+
 function prop(name) {
    return function (object) {
       return object[name];
