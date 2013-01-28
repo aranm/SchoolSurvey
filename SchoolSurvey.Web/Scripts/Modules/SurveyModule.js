@@ -3,7 +3,8 @@ define("SurveyModule", [
       "Core",
       "QuestionFactory",
       "SliderBinding",
-      "loadKoTemplate!Survey/surveyTemplate"], function (core, questionFactory) {
+      "loadKoTemplate!Survey/surveyTemplate",
+      'JQueryDictionary'], function (core, questionFactory) {
    core.register("SurveyModule", function (sandbox) {
 
       var ko = sandbox.getObservable(),
@@ -26,6 +27,25 @@ define("SurveyModule", [
          }
       }),
       saveCurrentQuestion = function () {
+         //prepare save data
+         var data = {
+            userId: userId,
+            responses: currentQuestion().responses().map(function (item) {
+               return {
+                  id: item.id,
+                  value: item.sliderStuff.currentValue()
+               };
+            })
+         };
+         
+         sandbox.request({
+            name: "SaveCurrentResponses",
+            data: $.toDictionary(data),
+            success: function (serverResponse) {
+            },
+            failure: function (errorMessages) {
+            }
+         });
          
       },
       moveToNextQuestion = function () {

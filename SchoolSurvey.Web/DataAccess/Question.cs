@@ -8,6 +8,7 @@ namespace SchoolSurvey.Web.DataAccess {
 
       public object CopyToIncludingResponses() {
          return new {
+            id = Id,
             maximumSpend = MaximumSpend,
             spendUnits = SpendUnits,
             description = this.Description,

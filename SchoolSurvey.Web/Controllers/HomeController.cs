@@ -15,18 +15,6 @@ namespace SchoolSurvey.Web.Controllers {
          return View();
       }
 
-      public JsonResult StartNewSurvey() {
-         //create a new user
-         var newUser = new Parent();
-         this.UnitOfWork.Add(newUser);
-         this.UnitOfWork.SaveChanges();
-
-         //get all the questions
-         var questions = this.UnitOfWork.Questions.Select(item => item.CopyToIncludingResponses());
-
-         return base.Json(new { user = newUser.Id, questions = questions }, true);
-      }
-
       public ActionResult CleanDataStore() {
          //create a new user
          this.UnitOfWork.Questions.ToList().ForEach(item => this.UnitOfWork.Remove(item));
@@ -39,6 +27,8 @@ namespace SchoolSurvey.Web.Controllers {
       }
 
       public ActionResult ImportQuestions() {
+
+         CleanDataStore();
 
          foreach (string line in Regex.Split(Resources.Questions, System.Environment.NewLine).ToList().Where(s => !string.IsNullOrEmpty(s))) {
             string[] values = Regex.Split(line, ",");

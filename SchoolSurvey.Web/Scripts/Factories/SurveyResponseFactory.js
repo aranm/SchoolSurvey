@@ -11,6 +11,7 @@
              currentValue: currentValue
           };
       return {
+         id: response.id,
          questionNumber: itemNumber,
          questionTitle: response.questionTitle,
          sliderStuff: sliderStuff,

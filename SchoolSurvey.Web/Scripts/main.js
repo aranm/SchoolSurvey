@@ -10,6 +10,7 @@ require.config({
       'jqueryui': 'jquery-ui-1.10.0',
       'touch-punch' : 'jquery.ui.touch-punch',
       'ArrayExtension': 'Utilities/ArrayExtension',
+      'JQueryDictionary': 'Utilities/JQueryDictionary',
 
       //Framework
       'Core': 'Framework/Core',
@@ -56,6 +57,9 @@ require.config({
       'touch-punch': {
          deps: ['jqueryui'],
          exports: 'jQuery'
+      },
+      'JQueryDictionary': {
+         deps: ['jquery']
       }
    },
    loadKoTemplate: {
@@ -108,15 +112,15 @@ require(['CoreScripts', 'jquery', 'AjaxConfiguration', 'RoutingConfiguration', '
    coreScripts.core.Communication.notify('OpenHomeScreen');
    
    $(function () {
-      $("#slider").slider({
+      $('#slider').slider({
          value: 100,
          min: 0,
          max: 500,
          step: 50,
          slide: function (event, ui) {
-            $("#amount").val("$" + ui.value);
+            $('#amount').val('$' + ui.value);
          }
       });
-      $("#amount").val("$" + $("#slider").slider("value"));
+      $('#amount').val('$' + $('#slider').slider('value'));
    });
 });

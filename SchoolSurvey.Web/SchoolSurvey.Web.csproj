@@ -175,6 +175,9 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ResourceController.cs" />
+    <Compile Include="DataContracts\SaveResponses.cs" />
+    <Compile Include="Controllers\SurveyController.cs" />
+    <Compile Include="DataContracts\SurveyResponse.cs" />
     <Compile Include="DataAccess\Question.cs" />
     <Compile Include="DataAccess\Response.cs" />
     <Compile Include="DataAccess\SurveyModel.cs">
@@ -331,6 +334,7 @@
     <Content Include="Scripts\stringTemplateEngine.js" />
     <Content Include="Scripts\text.js" />
     <Content Include="Scripts\Utilities\ArrayExtension.js" />
+    <Content Include="Scripts\Utilities\JQueryDictionary.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
