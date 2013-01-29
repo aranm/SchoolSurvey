@@ -754,3 +754,32 @@ tr.pager td {
             margin: 0;
         }
 }
+
+.startButton {
+      background-image: url(images/start-button.png);
+      background-repeat: no-repeat;
+      background-position: left top;
+      padding-top:68px;
+      margin-bottom:50px;
+}
+
+.rightAligned {
+   right: 0;
+}
+.leftAligned {
+   left: 0;
+}
+/*#body {
+   top: 50px;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   position: absolute;
+}
+
+.fillAll {
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+}*/
