@@ -44,6 +44,7 @@ require.config({
 
       //Factories
       'QuestionFactory': 'Factories/QuestionFactory',
+      'FinalQuestionFactory': 'Factories/FinalQuestionFactory',
       'SurveyResponseFactory': 'Factories/SurveyResponseFactory'
    },
    shim: {

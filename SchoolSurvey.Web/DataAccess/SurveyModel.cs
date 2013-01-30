@@ -15,6 +15,8 @@ namespace SchoolSurvey.Web.DataAccess
 
     [ReverseAssociation("Parent")]
     private readonly EntityCollection<ParentResponse> _parentResponses = new EntityCollection<ParentResponse>();
+    [ReverseAssociation("Parent")]
+    private readonly EntityCollection<FinalResponse> _finalResponses = new EntityCollection<FinalResponse>();
 
 
     #endregion
@@ -25,6 +27,12 @@ namespace SchoolSurvey.Web.DataAccess
     public EntityCollection<ParentResponse> ParentResponses
     {
       get { return Get(_parentResponses); }
+    }
+
+    [System.Diagnostics.DebuggerNonUserCode]
+    public EntityCollection<FinalResponse> FinalResponses
+    {
+      get { return Get(_finalResponses); }
     }
 
 
@@ -174,7 +182,6 @@ namespace SchoolSurvey.Web.DataAccess
     }
 
     #endregion
-
   }
 
 
@@ -257,6 +264,134 @@ namespace SchoolSurvey.Web.DataAccess
   }
 
 
+  [Serializable]
+  [System.CodeDom.Compiler.GeneratedCode("LightSpeedModelGenerator", "1.0.0.0")]
+  [System.ComponentModel.DataObject]
+  public partial class FinalQuestions : Entity<int>
+  {
+    #region Fields
+  
+    private string _question;
+
+    #endregion
+    
+    #region Field attribute and view names
+    
+    /// <summary>Identifies the Question entity attribute.</summary>
+    public const string QuestionField = "Question";
+
+
+    #endregion
+    
+    #region Relationships
+
+    [ReverseAssociation("FinalQuestions")]
+    private readonly EntityCollection<FinalResponse> _finalResponses = new EntityCollection<FinalResponse>();
+
+
+    #endregion
+    
+    #region Properties
+
+    [System.Diagnostics.DebuggerNonUserCode]
+    public EntityCollection<FinalResponse> FinalResponses
+    {
+      get { return Get(_finalResponses); }
+    }
+
+
+    [System.Diagnostics.DebuggerNonUserCode]
+    public string Question
+    {
+      get { return Get(ref _question, "Question"); }
+      set { Set(ref _question, value, "Question"); }
+    }
+
+    #endregion
+
+
+  }
+
+
+  [Serializable]
+  [System.CodeDom.Compiler.GeneratedCode("LightSpeedModelGenerator", "1.0.0.0")]
+  [System.ComponentModel.DataObject]
+  public partial class FinalResponse : Entity<int>
+  {
+    #region Fields
+  
+    private string _response;
+    private int _parentId;
+    private int _finalQuestionsId;
+
+    #endregion
+    
+    #region Field attribute and view names
+    
+    /// <summary>Identifies the Response entity attribute.</summary>
+    public const string ResponseField = "Response";
+    /// <summary>Identifies the ParentId entity attribute.</summary>
+    public const string ParentIdField = "ParentId";
+    /// <summary>Identifies the FinalQuestionsId entity attribute.</summary>
+    public const string FinalQuestionsIdField = "FinalQuestionsId";
+
+
+    #endregion
+    
+    #region Relationships
+
+    [ReverseAssociation("FinalResponses")]
+    private readonly EntityHolder<Parent> _parent = new EntityHolder<Parent>();
+    [ReverseAssociation("FinalResponses")]
+    private readonly EntityHolder<FinalQuestions> _finalQuestions = new EntityHolder<FinalQuestions>();
+
+
+    #endregion
+    
+    #region Properties
+
+    [System.Diagnostics.DebuggerNonUserCode]
+    public Parent Parent
+    {
+      get { return Get(_parent); }
+      set { Set(_parent, value); }
+    }
+
+    [System.Diagnostics.DebuggerNonUserCode]
+    public FinalQuestions FinalQuestions
+    {
+      get { return Get(_finalQuestions); }
+      set { Set(_finalQuestions, value); }
+    }
+
+
+    [System.Diagnostics.DebuggerNonUserCode]
+    public string Response
+    {
+      get { return Get(ref _response, "Response"); }
+      set { Set(ref _response, value, "Response"); }
+    }
+
+    /// <summary>Gets or sets the ID for the <see cref="Parent" /> property.</summary>
+    [System.Diagnostics.DebuggerNonUserCode]
+    public int ParentId
+    {
+      get { return Get(ref _parentId, "ParentId"); }
+      set { Set(ref _parentId, value, "ParentId"); }
+    }
+
+    /// <summary>Gets or sets the ID for the <see cref="FinalQuestions" /> property.</summary>
+    [System.Diagnostics.DebuggerNonUserCode]
+    public int FinalQuestionsId
+    {
+      get { return Get(ref _finalQuestionsId, "FinalQuestionsId"); }
+      set { Set(ref _finalQuestionsId, value, "FinalQuestionsId"); }
+    }
+
+    #endregion
+  }
+
+
 
 
   /// <summary>
@@ -284,6 +419,16 @@ namespace SchoolSurvey.Web.DataAccess
     public System.Linq.IQueryable<ParentResponse> ParentResponses
     {
       get { return this.Query<ParentResponse>(); }
+    }
+    
+    public System.Linq.IQueryable<FinalQuestions> FinalQuestions
+    {
+      get { return this.Query<FinalQuestions>(); }
+    }
+    
+    public System.Linq.IQueryable<FinalResponse> FinalResponses
+    {
+      get { return this.Query<FinalResponse>(); }
     }
     
   }

@@ -22,7 +22,13 @@ namespace SchoolSurvey.Web.Controllers {
             .OrderBy(item => item.Id)
             .Select(item => item.CopyToIncludingResponses());
 
-         return base.Json(new { user = newUser.Id, questions = questions }, true);
+         //get the final questions
+         var finalQuestions = this.UnitOfWork
+            .FinalQuestions
+            .OrderBy(item => item.Id)
+            .Select(item => item.CopyTo());
+
+         return base.Json(new { user = newUser.Id, questions = questions, finalQuestions = finalQuestions }, true);
       }
 
       public JsonResult SaveCurrentResponses(SaveResponses saveResponses) {
@@ -45,6 +51,27 @@ namespace SchoolSurvey.Web.Controllers {
             this.UnitOfWork.SaveChanges();
          }
          return base.Json(new { }, true);
+      }
+
+      public JsonResult SaveFinalQuestions(FinalQuestionResponses finalQuestionResponses) {
+         var user = this.UnitOfWork.Parents.FirstOrDefault(item => item.Id == finalQuestionResponses.UserId);
+         if (user == null) { }
+         else {
+            foreach (var userResponse in finalQuestionResponses.Responses) {
+               var finalQuestion = this.UnitOfWork.FinalQuestions.FirstOrDefault(item => item.Id == userResponse.Id);
+               if (finalQuestion != null) {
+                  var parentResponse = new FinalResponse {
+                     Parent = user,
+                     FinalQuestions = finalQuestion,
+                     Response = userResponse.Response
+                  };
+                  this.UnitOfWork.Add(parentResponse);
+               }
+            }
+
+            this.UnitOfWork.SaveChanges();
+         }
+         return base.Json(new { }, true);         
       }
    }
 }

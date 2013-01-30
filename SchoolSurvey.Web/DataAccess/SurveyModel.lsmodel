@@ -6,6 +6,9 @@
         <oneToManyAssociation Id="4292819b-1d8a-427c-93ea-c3fd86baafdf" collectionName="ParentResponses" backreferenceName="Parent" isNullable="false">
           <entityMoniker name="/SurveyModel/ParentResponse" />
         </oneToManyAssociation>
+        <oneToManyAssociation Id="59305d6a-4d2d-4e2f-afde-83823547503b" collectionName="FinalResponses" backreferenceName="Parent" isNullable="false">
+          <entityMoniker name="/SurveyModel/FinalResponse" />
+        </oneToManyAssociation>
       </oneToManyAssociations>
     </entity>
     <entity name="Question" identityType="Int32" cacheExpiry="0">
@@ -34,6 +37,21 @@
     <entity name="ParentResponse" identityType="Int32" cacheExpiry="0">
       <entityProperties>
         <entityProperty name="Spent" dataType="Int32" privateSetter="false" />
+      </entityProperties>
+    </entity>
+    <entity name="FinalQuestions" identityType="Int32" cacheExpiry="0">
+      <entityProperties>
+        <entityProperty name="Question" privateSetter="false" />
+      </entityProperties>
+      <oneToManyAssociations>
+        <oneToManyAssociation Id="f4694235-4987-4745-8d35-7dec2579ec54" collectionName="FinalResponses" backreferenceName="FinalQuestions" isNullable="false">
+          <entityMoniker name="/SurveyModel/FinalResponse" />
+        </oneToManyAssociation>
+      </oneToManyAssociations>
+    </entity>
+    <entity name="FinalResponse" identityType="Int32" cacheExpiry="0">
+      <entityProperties>
+        <entityProperty name="Response" privateSetter="false" />
       </entityProperties>
     </entity>
   </entities>

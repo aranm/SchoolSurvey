@@ -61,7 +61,17 @@ namespace SchoolSurvey.Web.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Success of the school, 100, Academic performance, Spiritual development, Positive relationships between students, Positive relationships between students and teachers, Number of subjects offered, Community involvement.
+        ///   Looks up a localized string similar to Religion?Further comments,If you would like to be contacted about joining the parents association please leave details here..
+        /// </summary>
+        internal static string FinalQuestions {
+            get {
+                return ResourceManager.GetString("FinalQuestions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Success of the school,What do you consider to be a successful school. If you had mony to spend to bulid a successful school how would you allocate it?,100,dollars,Academic performance,Spiritual development,Positive relationships between students,Positive relationships between students and teachers,Number of subjects offered,Community involvement
+        ///Why this school?,Your children are coming here. What are the reasons that bring them here,100,Education credits,University entrance,Quality of peers,Spiritual emph [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Questions {
             get {

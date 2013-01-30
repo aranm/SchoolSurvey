@@ -18,13 +18,13 @@
             </li>
          </ol>
 
-         <span class="leftAligned" data-bind="text: spendMessage"></span>
-         <span class="rightAligned" data-bind="visible: $parent.hasNextQuestion, click: $parent.moveToNextQuestion">
-            Move to next question
-         </span>
-         <span class="rightAligned" data-bind="visible: $parent.isFinalQuestion, click: $parent.finishQuestionPartOfSurvey">
+         <span class="leftAligned message-error" data-bind="text: spendMessage, css: {'message-success': $parent.canMoveToNextStep}"></span>
+         <button class="rightAligned" data-bind="visible: $parent.hasNextQuestion, click: $parent.moveToNextQuestion">
+            Next question
+         </button>
+         <button class="rightAligned" data-bind="visible: $parent.isFinalQuestion, click: $parent.finishQuestionPartOfSurvey">
             Finish
-         </span>
+         </button>
       </section>
    </div>
 </div>

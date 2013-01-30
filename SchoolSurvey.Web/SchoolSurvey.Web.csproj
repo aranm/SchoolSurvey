@@ -175,6 +175,9 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ResourceController.cs" />
+    <Compile Include="DataAccess\FinalQuestions.cs" />
+    <Compile Include="DataContracts\FinalQuestionResponse.cs" />
+    <Compile Include="DataContracts\FinalQuestionResponses.cs" />
     <Compile Include="DataContracts\SaveResponses.cs" />
     <Compile Include="Controllers\SurveyController.cs" />
     <Compile Include="DataContracts\SurveyResponse.cs" />
@@ -264,6 +267,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\Factories\FinalQuestionFactory.js" />
     <Content Include="Scripts\Factories\SurveyResponseFactory.js" />
     <Content Include="Scripts\Framework\README" />
     <Content Include="DataAccess\SurveyModel.lsmodel">
@@ -274,6 +278,7 @@
       <DependentUpon>SurveyModel.lsmodel</DependentUpon>
     </Content>
     <Content Include="Resources\Questions.csv" />
+    <Content Include="Resources\FinalQuestions.csv" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\Configuration\AjaxConfiguration.js" />
     <Content Include="Scripts\Configuration\RoutingConfiguration.js" />
@@ -378,6 +383,7 @@
     <Content Include="Views\Resource\Survey\SurveyTemplate.cshtml" />
     <Content Include="Views\Resource\Survey\StartTemplate.cshtml" />
     <Content Include="Views\Resource\Survey\FinishTemplate.cshtml" />
+    <Content Include="Views\Resource\Survey\FinalQuestionTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

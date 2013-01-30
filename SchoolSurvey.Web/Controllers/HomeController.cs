@@ -21,6 +21,8 @@ namespace SchoolSurvey.Web.Controllers {
          this.UnitOfWork.Parents.ToList().ForEach(item => this.UnitOfWork.Remove(item));
          this.UnitOfWork.ParentResponses.ToList().ForEach(item => this.UnitOfWork.Remove(item));
          this.UnitOfWork.Responses.ToList().ForEach(item => this.UnitOfWork.Remove(item));
+         this.UnitOfWork.FinalQuestions.ToList().ForEach(item => this.UnitOfWork.Remove(item));
+         this.UnitOfWork.FinalResponses.ToList().ForEach(item => this.UnitOfWork.Remove(item));
          this.UnitOfWork.SaveChanges();
 
          return base.Json(new { }, true);
@@ -32,7 +34,7 @@ namespace SchoolSurvey.Web.Controllers {
 
          foreach (string line in Regex.Split(Resources.Questions, System.Environment.NewLine).ToList().Where(s => !string.IsNullOrEmpty(s))) {
             string[] values = Regex.Split(line, ",");
-            
+
             var question = new Question {
                Title = values[0],
                Description = values[1],
@@ -50,6 +52,17 @@ namespace SchoolSurvey.Web.Controllers {
                this.UnitOfWork.Add(response);
 
             });
+         }
+
+         foreach (string line in Regex.Split(Resources.FinalQuestions, System.Environment.NewLine).ToList().Where(s => !string.IsNullOrEmpty(s))) {
+            string[] values = Regex.Split(line, ",");
+
+            foreach (var value in values) {
+               var finalQuestion = new FinalQuestions {
+                  Question = value
+               };
+               this.UnitOfWork.Add(finalQuestion);
+            }
          }
 
          this.UnitOfWork.SaveChanges();

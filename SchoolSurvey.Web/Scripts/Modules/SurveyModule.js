@@ -2,11 +2,13 @@
 define("SurveyModule", [
       "Core",
       "QuestionFactory",
+      "FinalQuestionFactory",
       "SliderBinding",
       "loadKoTemplate!Survey/surveyTemplate",
       "loadKoTemplate!Survey/startTemplate",
+      "loadKoTemplate!Survey/finalQuestionTemplate",
       "loadKoTemplate!Survey/finishTemplate",
-      'JQueryDictionary'], function (core, questionFactory) {
+      'JQueryDictionary'], function (core, questionFactory, finalQuestionFactory) {
    core.register("SurveyModule", function (sandbox) {
 
       var ko = sandbox.getObservable(),
@@ -23,8 +25,15 @@ define("SurveyModule", [
       title = ko.observable(''),
       description = ko.observable(''),
       questionArray = ko.observableArray(),
+      finalQuestionArray = ko.observableArray(),
       totalSpent = ko.observable(0),
       currentQuestion = ko.observable(null),
+      canMoveToNextStep = ko.computed(function () {
+         if (currentQuestion() === null) {
+            return false;
+         }
+         return currentQuestion().isValid();
+      }),
       hasNextQuestion = ko.computed(function () {
          if (questionArray().length == 0) {
             return false;
@@ -48,7 +57,7 @@ define("SurveyModule", [
          }
       }),
       showSurveyFinishedScreen = function() {
-         templateName('finishTemplate');
+         templateName('finalQuestionTemplate');
       },
       saveCurrentQuestion = function () {
          //prepare save data
@@ -70,14 +79,15 @@ define("SurveyModule", [
             failure: function (errorMessages) {
             }
          });
-         
       },
       moveToNextQuestion = function () {
-         var indexOfCurrentQuestion = questionArray().indexOf(currentQuestion());
-         
-         if (indexOfCurrentQuestion < questionArray().length - 1) {
-            saveCurrentQuestion();
-            currentQuestion(questionArray()[indexOfCurrentQuestion + 1]);
+         if (canMoveToNextStep() === true) {
+            var indexOfCurrentQuestion = questionArray().indexOf(currentQuestion());
+
+            if (indexOfCurrentQuestion < questionArray().length - 1) {
+               saveCurrentQuestion();
+               currentQuestion(questionArray()[indexOfCurrentQuestion + 1]);
+            }
          }
       },
       finishQuestionPartOfSurvey = function () {
@@ -87,6 +97,29 @@ define("SurveyModule", [
             saveCurrentQuestion();
             showSurveyFinishedScreen();
          }
+      },
+      finishFinalQuestionPartOfSurvey = function () {
+         //prepare save data
+         var data = {
+            userId: userId,
+            responses: finalQuestionArray().map(function (item) {
+               return {
+                  id: item.id,
+                  response: item.answer()
+               };
+            })
+         };
+
+         sandbox.request({
+            name: "SaveFinalQuestions",
+            data: $.toDictionary(data),
+            success: function (serverResponse) {
+               templateName('finishTemplate');
+            },
+            failure: function (errorMessages) {
+            }
+         });
+
       },
       loadQuestions = function () {
          sandbox.request({
@@ -100,6 +133,10 @@ define("SurveyModule", [
 
                questionArray(serverResponse.questions.map(function(item) {
                   return questionFactory.create(sandbox, item);
+               }));
+
+               finalQuestionArray(serverResponse.finalQuestions.map(function(item) {
+                  return finalQuestionFactory.create(sandbox, item);
                }));
 
                if (questionArray().length > 0) {
@@ -117,12 +154,15 @@ define("SurveyModule", [
       viewModel = {
          templateName: templateName,
          startSurvey: startSurvey,
+         canMoveToNextStep: canMoveToNextStep,
          surveyIsRunning: surveyIsRunning, 
          currentQuestion: currentQuestion,
          hasNextQuestion: hasNextQuestion,
          isFinalQuestion: isFinalQuestion,
          moveToNextQuestion: moveToNextQuestion,
-         finishQuestionPartOfSurvey: finishQuestionPartOfSurvey, 
+         finishQuestionPartOfSurvey: finishQuestionPartOfSurvey,
+         finishFinalQuestionPartOfSurvey: finishFinalQuestionPartOfSurvey,
+         finalQuestionArray: finalQuestionArray,
          title: title,
          description: description,
          totalSpent: totalSpent
