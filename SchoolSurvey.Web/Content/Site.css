@@ -794,3 +794,7 @@ button:disabled {
    bottom: 0;
    position: absolute;
 }*/
+
+.graphicPanel {
+   margin-top: 40px;
+}
