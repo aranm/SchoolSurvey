@@ -28,9 +28,13 @@ require.config({
       'Core.Storage': 'Framework/Core.Storage',
       'Sandbox': 'Framework/Sandbox',
 
+      //Charts
+      'highcharts': 'Highcharts/highcharts.src',
+
       //CustomBindings
       'StopBindings': 'CustomBindings/StopBindings',
       'SliderBinding': 'CustomBindings/SliderBinding',
+      'BarChart': 'CustomBindings/BarChart',
 
       //Configuration
       'AjaxConfiguration': 'Configuration/AjaxConfiguration',
@@ -38,9 +42,11 @@ require.config({
 
       //Module Groupings
       'HomeScreen': 'ModuleGroupings/HomeScreen',
+      'StatisticsScreen': 'ModuleGroupings/StatisticsScreen',
 
       //Modules
       'SurveyModule': 'Modules/SurveyModule',
+      'StatisticsModule': 'Modules/StatisticsModule',
 
       //Factories
       'QuestionFactory': 'Factories/QuestionFactory',
@@ -60,6 +66,10 @@ require.config({
          exports: 'jQuery'
       },
       'JQueryDictionary': {
+         deps: ['jquery']
+      },
+      'highcharts': {
+         exports: 'Highcharts',
          deps: ['jquery']
       }
    },
@@ -94,6 +104,7 @@ define('CoreScripts', [
          'Sandbox',
          'text',
          'loadKoTemplate',
+         'BarChart',
          'StopBindings',
          'SliderBinding'], function (core, jquery) {
             return {

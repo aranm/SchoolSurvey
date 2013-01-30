@@ -11,5 +11,20 @@ namespace SchoolSurvey.Web.DataAccess {
             questionTitle = this.Title
          };
       }
+
+      public object CopyToForStatistics() {
+         var allParentResponses = this.ParentResponses.ToList();
+         var sum = allParentResponses.Sum(item => item.Spent);
+         float average = 0;
+
+         if (allParentResponses.Any()) {
+            average = sum / (float)allParentResponses.Count;
+         }
+
+         return new {
+            title= this.Title,
+            count = average
+         };
+      }
    }
 }

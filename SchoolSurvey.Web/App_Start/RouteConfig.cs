@@ -30,6 +30,12 @@ namespace SchoolSurvey.Web {
             defaults: new { controller = "Resource", action = "JavascriptFile" });
 
          routes.MapRoute(
+             name: "GetStatisticsForQuestion",
+             url: "{controller}/{action}/{questionId}",
+             defaults: new { controller = "Statistics", action = "GetStatisticsForQuestion" }
+         );
+
+         routes.MapRoute(
              name: "Default",
              url: "{controller}/{action}/{id}",
              defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

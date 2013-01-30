@@ -16,5 +16,15 @@ namespace SchoolSurvey.Web.DataAccess {
             responses = this.Responses.Select(item => item.CopyTo())
          };
       }
+
+      public object CopyTo() {
+         return new {
+            id = Id,
+            maximumSpend = MaximumSpend,
+            spendUnits = SpendUnits,
+            description = this.Description,
+            title = this.Title
+         };
+      }
    }
 }

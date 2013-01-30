@@ -152,6 +152,9 @@ define("SurveyModule", [
          loadQuestions();
       },
       viewModel = {
+         openStats: function () {
+            sandbox.notify("OpenStatisticsScreen");
+         },
          templateName: templateName,
          startSurvey: startSurvey,
          canMoveToNextStep: canMoveToNextStep,
