@@ -57,7 +57,7 @@ namespace SchoolSurvey.Web.Controllers {
          var user = this.UnitOfWork.Parents.FirstOrDefault(item => item.Id == finalQuestionResponses.UserId);
          if (user == null) { }
          else {
-            foreach (var userResponse in finalQuestionResponses.Responses) {
+            foreach (var userResponse in finalQuestionResponses.Responses.Where(item => String.IsNullOrEmpty(item.Response) == false)) {
                var finalQuestion = this.UnitOfWork.FinalQuestions.FirstOrDefault(item => item.Id == userResponse.Id);
                if (finalQuestion != null) {
                   var parentResponse = new FinalResponse {

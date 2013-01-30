@@ -2,7 +2,7 @@
    <div class="content-wrapper">
       <hgroup class="title">
          <h1>Anything else?</h1>
-         <h2>Just a couple of little things to help us use your reponses better</h2>
+         <h2>Just a couple of little things that could help us, none of the questions here are compulsory.</h2>
       </hgroup>
    </div>
 </section>
@@ -10,10 +10,11 @@
    <ol class="round" data-bind="foreach: finalQuestionArray">
       <li>
          <h5 data-bind="text: questionText"></h5>
-         <input data-bind="value: answer"/>
+         <textarea data-bind="value: answer"></textarea>
       </li>
    </ol>
-
+   
+   <h3>Thank you for your time</h3>
    <button class="rightAligned" data-bind="click: finishFinalQuestionPartOfSurvey">Finish
    </button>
 </section>

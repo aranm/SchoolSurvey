@@ -35,7 +35,7 @@
             return "You have overspent by " + (amountSpent() - question.maximumSpend) + " " + question.spendUnits + ".";
          }
          else {
-            return "You have no " + question.spendUnits + " left to spend";
+            return "You have no " + question.spendUnits + " left to spend - you may continue to the next question";
          }
       }),
       valueChanged = function () {

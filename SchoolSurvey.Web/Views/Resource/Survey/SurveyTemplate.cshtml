@@ -9,16 +9,15 @@
          </div>
       </section>
       <section class="content-wrapper main-content clear-fix">
+         <div class=" message-error" data-bind="text: spendMessage, css: {'message-success': $parent.canMoveToNextStep}"></div>
          <ol class="round" data-bind="foreach: responses">
             <li data-bind="attr: { 'class': questionNumber }">
                <h5 data-bind="text: questionTitle"></h5>
                <div data-bind="slider: sliderStuff"></div>
-               <span>$</span>
                <span data-bind="text: sliderStuff.currentValue"></span>
             </li>
          </ol>
 
-         <span class="leftAligned message-error" data-bind="text: spendMessage, css: {'message-success': $parent.canMoveToNextStep}"></span>
          <button class="rightAligned" data-bind="visible: $parent.hasNextQuestion, click: $parent.moveToNextQuestion">
             Next question
          </button>
